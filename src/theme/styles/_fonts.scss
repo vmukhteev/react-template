@@ -1,0 +1,28 @@
+@import '../partials/index';
+
+@font-face {
+  font-family: 'Lexus';
+  font-weight: bold;
+  font-style: normal;
+  src: url($path-theme + 'fonts/FavoritC-Bold.eot'),
+  url($path-theme + 'fonts/FavoritC-Bold.woff') format('woff'),
+  url($path-theme + 'fonts/FavoritC-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Lexus';
+  font-weight: normal;
+  font-style: normal;
+  src: url($path-theme + 'fonts/FavoritC.eot'),
+  url($path-theme + 'fonts/FavoritC.woff') format('woff'),
+  url($path-theme + 'fonts/FavoritC.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Lexus';
+  font-weight: 100;
+  font-style: normal;
+  src: url($path-theme + 'fonts/FavoritC-Light.eot'),
+  url($path-theme + 'fonts/FavoritC-Light.woff') format('woff'),
+  url($path-theme + 'fonts/FavoritC-Light.ttf') format('truetype');
+}

@@ -1,0 +1,51 @@
+{
+  "license": "UNLICENSED",
+  "scripts": {
+    "preinstall": "npm i -g eslint eslint-config-airbnb eslint-config-postcss eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-import eslint-plugin-babel babel-cli babel-eslint babel-register rimraf",
+    "clean": "rimraf ./build/",
+    "build:webpack": "cross-env NODE_ENV=production webpack --config webpack.config.prod.babel.js",
+    "build:replace-static-assets": "babel-node ./replace-static-assets.js",
+    "build": "npm run clean && npm run build:webpack && npm run build:replace-static-assets",
+    "start": "babel-node ./server.js"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.23.0",
+    "classnames": "^2.2.5",
+    "immutable": "^3.8.1",
+    "jquery": "^3.2.1",
+    "raven-js": "^3.15.0",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "react-redux": "^5.0.5",
+    "react-router": "^4.1.1",
+    "react-router-dom": "^4.1.1",
+    "react-router-redux": "next",
+    "redux": "^3.6.0",
+    "redux-form": "^6.7.0",
+    "redux-thunk": "^2.2.0",
+    "whatwg-fetch": "^2.0.3"
+  },
+  "devDependencies": {
+    "assets-webpack-plugin": "^3.5.1",
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "babel-register": "^6.24.1",
+    "copy-webpack-plugin": "^4.0.1",
+    "cross-env": "^5.0.0",
+    "css-loader": "^0.28.1",
+    "express": "^4.15.2",
+    "file-loader": "^0.11.1",
+    "node-sass": "^4.5.2",
+    "postcss-loader": "^2.0.5",
+    "react-hot-loader": "next",
+    "sass-loader": "^6.0.5",
+    "style-loader": "^0.17.0",
+    "url-loader": "^0.5.8",
+    "webpack": "^2.5.1",
+    "webpack-dev-middleware": "^1.10.2",
+    "webpack-hot-middleware": "^2.18.0"
+  }
+}

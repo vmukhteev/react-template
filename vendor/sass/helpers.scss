@@ -1,0 +1,42 @@
+.noselect, .noselect * {
+ touch-callout: none;
+ user-select: none;
+}
+
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.break-all {
+  word-break: break-all; //ie не воспринимает это свойство, если оно применяется к inline-элементу
+}
+
+.debug {
+  $width : 1px;
+  $style : solid;
+  border: $width $style #ff0000 !important;
+  * {
+    border: $width $style orange !important;
+    * {
+      border: $width $style #ffff00 !important;
+      * {
+        border: $width $style #00b500 !important;
+        * {
+          border: $width $style #00dada !important;
+          * {
+            border: $width $style #0000ff !important;
+            * {
+              border: $width $style palevioletred !important;
+            }
+          }
+        }
+      }
+    }
+  }
+}

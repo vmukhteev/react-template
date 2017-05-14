@@ -1,0 +1,26 @@
+.btn {
+    display: inline-block;
+    cursor: pointer;
+    user-select: none;
+    @at-root {
+        .btn_text {
+            display: inline;
+        }
+        .btn--disabled {
+            pointer-events: none;
+            cursor: default;
+        }
+    }
+}
+
+.menu {
+    @at-root {
+        .menu_item {
+            cursor: pointer;
+        }
+        .menu_item--active {
+            cursor: default;
+            pointer-events: none;
+        }
+    }
+}

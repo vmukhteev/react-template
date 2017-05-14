@@ -1,0 +1,128 @@
+@mixin placeholder {
+  &::-webkit-input-placeholder { /* WebKit browsers */
+    @content
+  }
+  &:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    @content
+  }
+  &::-moz-placeholder { /* Mozilla Firefox 19+ */
+    @content
+  }
+  &:-ms-input-placeholder { /* Internet Explorer 10+ */
+    @content
+  }
+}
+
+@mixin v-align-middle-outer($height: 100%) {
+  &:before {
+    content: '';
+    display: inline-block;
+    height: $height;
+    vertical-align: middle;
+  }
+}
+@mixin v-align-middle-inner {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+@mixin cover($top: 0, $right: 0, $bottom: 0, $left: 0) {
+  position: absolute;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}
+
+@mixin ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin content($offset-top: 0, $offset-bottom: 0) {
+  *zoom: 1;
+  &:before, &:after {
+    content: '-'; // без контента safari игнорирует блок с нулевой высотой, даже при overflow: hidden;
+    display: block;
+    overflow: hidden;
+    clear: both;
+    height: 0;
+  }
+  &:before {
+    margin-bottom: $offset-top;
+  }
+  &:after {
+    margin-top: $offset-bottom;
+  }
+}
+
+@mixin list_content($offsetY, $offsetX) {
+  margin-left: -$offsetX/2;
+  margin-right: -$offsetX/2;
+  @include content(-$offsetY/2, -$offsetY/2);
+}
+
+@mixin list_item($offsetY, $offsetX) {
+  margin: $offsetY/2 $offsetX/2;
+  display: inline-block;
+  vertical-align: top;
+}
+
+@mixin clearfix {
+  @include content();
+}
+
+//grid system
+@mixin grid($columns: 24, $name : "grid", $offset : 0 ) {
+  %#{$name}-item {
+    float: left;
+  }
+
+  $col-width: 1/($columns + ($columns - 1)*$offset);
+  $offset-width: $offset/($columns + ($columns - 1)*$offset);
+
+  @for $i from $columns - 1 through 1 {
+    $item-width: percentage($i*$col-width + ($i - 1)*$offset-width);
+    %#{$name}-w#{$i} {
+      width: $item-width;
+      @if $offset != 0 {
+        margin-right: percentage($offset-width);
+      }
+      @extend %#{$name}-item;
+    }
+    %#{$name}-left#{$i} {
+      margin-left: $item-width;
+    }
+    %#{$name}-right#{$i} {
+      margin-right: $item-width;
+    }
+    %#{$name}-top#{$i} {
+      margin-top: $item-width;
+    }
+    %#{$name}-bottom#{$i} {
+      margin-bottom: $item-width;
+    }
+    @for $j from $i - 1 through 1 {
+      $item-width: percentage(($j*$col-width + ($j - 1)*$offset-width)/($i*$col-width + ($i - 1)*$offset-width));
+      %#{$name}-w#{$i} %#{$name}-w#{$j}{
+        width: $item-width;
+        @if $offset != 0 {
+          margin-right: percentage($offset-width);
+        }
+      }
+      %#{$name}-w#{$i} %#{$name}-left#{$j}{
+        margin-left: $item-width;
+      }
+      %#{$name}-w#{$i} %#{$name}-right#{$j}{
+        margin-right: $item-width;
+      }
+      %#{$name}-w#{$i} %#{$name}-top#{$j}{
+        margin-top: $item-width;
+      }
+      %#{$name}-w#{$i} %#{$name}-bottom#{$j}{
+        margin-bottom: $item-width;
+      }
+    }
+  }
+}
