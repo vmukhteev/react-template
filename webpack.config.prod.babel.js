@@ -21,8 +21,8 @@ export default {
       'react-router-redux',
       'react-redux',
       'redux',
-      './vendor/polyfill',
-      './vendor/basic',
+      './src/common/polyfill',
+      './src/common/basic',
       'raven-js',
     ]
   },

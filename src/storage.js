@@ -1,12 +1,12 @@
 /* global __webpack_hash__ */
 
-import {getQueryVariable} from '../vendor/basic';
+import {getQueryVariable} from './common/basic';
 
 if(localStorage) {
 
   //localStorage может стать неаткуальной в новом билде, поэтому чистим ее
   if(!localStorage.getItem("build") || localStorage.getItem("build") !== __webpack_hash__) {
-    localStorage.clear();
+    //localStorage.removeItem('item');
     localStorage.setItem("build", __webpack_hash__);
   }
 

@@ -10,6 +10,7 @@ export default {
     'webpack-hot-middleware/client',
     'babel-polyfill', //в частности, promise-полифилл
     'whatwg-fetch', //fetch-полифилл
+    './src/common/polyfill',
     './src/index.jsx',
   ],
   output: {
@@ -49,7 +50,7 @@ export default {
       },
       { test: /\.(eot|ttf|svg|woff|woff2)$/, use: 'file-loader' },
       {
-        test: /\.jsx?$/,
+        test: /\.(js|jsx)?$/,
         use: {
           loader: 'babel-loader',
           options: {

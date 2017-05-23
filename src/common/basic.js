@@ -1,3 +1,5 @@
+/* global NODE_ENV, ga */
+
 export function googleEvent(...args) {
   if(NODE_ENV === 'production') {
     ga(...args);
