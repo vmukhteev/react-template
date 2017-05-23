@@ -67,7 +67,6 @@ export default {
           'sass-loader'
         ],
       },
-      { test: /\.(eot|ttf|svg|woff|woff2)$/, use: 'file-loader' },
       {
         test: /\.(js|jsx)?$/,
         use: {
