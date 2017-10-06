@@ -12,7 +12,6 @@ export default {
       './src/index.jsx',
     ],
     vendor: [
-      'webpack-hot-middleware/client',
       'babel-polyfill', //в частности, promise-полифилл
       'whatwg-fetch', //fetch-полифилл
       'react',
@@ -29,7 +28,6 @@ export default {
   output: {
     path: path.join(__dirname, 'build', 'static', '[hash]'),
     filename: '[name].js',
-    publicPath: '/static/[hash]/',
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -45,10 +43,14 @@ export default {
       minimize: true,
       debug: false
     }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor'
+    }),
     new CopyWebpackPlugin([
       { from: './src/index.html', to: '../../' }
     ]),
     new AssetsPlugin({ prettyPrint: true }),
+    new webpack.ExtendedAPIPlugin()
   ],
   resolve: {
     extensions: ['.js', '.jsx', '.scss'],
@@ -62,7 +64,12 @@ export default {
         test: /\.scss$/,
         use: [
           'style-loader',
-          { loader: 'css-loader', options: { importLoaders: 1 } },
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+            }
+          },
           'postcss-loader',
           'sass-loader'
         ],
