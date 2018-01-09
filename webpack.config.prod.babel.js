@@ -9,7 +9,7 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin';
 export default {
   entry: {
     vendor: [
-      'babel-polyfill',
+      '@babel/polyfill',
       'whatwg-fetch',
       'react',
       'react-dom',
@@ -127,9 +127,11 @@ export default {
           loader: 'babel-loader',
           options: {
             presets: [
-              "react",
-              ["es2015", {"modules": false}],
-              "stage-0"
+              "@babel/preset-react",
+              ["@babel/preset-env", {
+                "modules": false
+              }],
+              "@babel/preset-stage-0"
             ],
             babelrc: false
           }

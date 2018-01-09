@@ -9,7 +9,6 @@ import thunk from 'redux-thunk';
 import { reducer as formReducer } from 'redux-form'
 import * as reducers from './reducers';
 import App from './containers/App';
-import './theme/styles/plugins/index.scss';
 import { Route, Switch } from 'react-router';
 import { ConnectedRouter } from 'react-router-redux';
 import createBrowserHistory from 'history/createBrowserHistory';

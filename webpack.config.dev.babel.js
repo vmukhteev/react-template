@@ -10,7 +10,7 @@ export default {
   entry: {
     //нужно загрузить babel-polyfill раньше, чем react и react-dom из-за ошибки в IE в React 15.4
     vendor: [
-      'babel-polyfill',
+      '@babel/polyfill',
       './src/common/polyfill',
     ],
     app: [
@@ -115,9 +115,11 @@ export default {
           loader: 'babel-loader',
           options: {
             presets: [
-              "react",
-              ["es2015", {"modules": false}],
-              "stage-0"
+              "@babel/preset-react",
+              ["@babel/preset-env", {
+                "modules": false
+              }],
+              "@babel/preset-stage-0"
             ],
             plugins: ["react-hot-loader/babel"],
             babelrc: false
