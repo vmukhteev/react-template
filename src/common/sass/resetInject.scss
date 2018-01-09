@@ -1,0 +1,19 @@
+.injectedBlock, .xModal {
+  input[type="checkbox"], input[type="radio"] {
+    display: none;
+  }
+  input, textarea {
+    outline: none;
+    -webkit-appearance: none;
+  }
+  label {
+    display: block;
+  }
+  * {
+    box-sizing: border-box;
+    position: relative;
+  }
+  a {
+    text-decoration: none;
+  }
+}

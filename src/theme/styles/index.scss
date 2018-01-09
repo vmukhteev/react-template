@@ -1,8 +1,6 @@
 @import "../partials/index";
 
 @import "fonts";
-@import "../../common/sass/reset";
-@import "../../common/sass/basic_styles";
+@import "../../common/sass/resetInject";
+@import "../../common/sass/basicStyles";
 @import "../../common/sass/helpers";
-
-@import "views/index";

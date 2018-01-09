@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>Template</title>
+    <meta name="viewport" content="width=device-width, user-scalable=0" />
+    <style>
+        body, div, span, applet, object, iframe,
+        h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+        a, abbr, acronym, address, big, cite, code,
+        del, dfn, em, img, ins, kbd, q, s, samp,
+        small, strike, strong, sub, sup, tt, var,
+        b, u, i, center,
+        dl, dt, dd, ol, ul, li,
+        fieldset, form, label, legend,
+        table, caption, tbody, tfoot, thead, tr, th, td,
+        article, aside, canvas, details, embed,
+        figure, figcaption, footer, header, hgroup,
+        menu, nav, output, ruby, section, summary,
+        time, mark, audio, video {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            vertical-align: baseline;
+        }
+        /* HTML5 display-role reset for older browsers */
+        article, aside, details, figcaption, figure,
+        footer, header, hgroup, menu, nav, section {
+            display: block;
+        }
+        ol, ul {
+            list-style: none;
+        }
+        blockquote, q {
+            quotes: none;
+        }
+        blockquote:before, blockquote:after,
+        q:before, q:after {
+            content: '';
+            content: none;
+        }
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+
+        :focus {
+            outline:none;
+        }
+
+        /* Reset `button` and button-style `input` default styles */
+        input[type="submit"],
+        input[type="reset"],
+        input[type="button"],
+        button {
+            outline: none;
+            background: none;
+            border: 0;
+            display: block;
+            color: inherit;
+            /* cursor: default; */
+            font: inherit;
+            line-height: normal;
+            text-align: left;
+            overflow: visible;
+            padding: 0;
+            appearance: button; /* for input */
+            user-select: none;
+        }
+
+        input::-moz-focus-inner,
+        button::-moz-focus-inner {
+            border: 0;
+            padding: 0;
+        }
+        input[type="search"] {
+            appearance: textfield;
+        }
+        a {
+            display: inline-block;
+            text-decoration: none;
+            color: inherit;
+        }
+        a:focus{
+            outline:0 !important;
+        }
+
+        input[type="checkbox"],
+        input[type="radio"] {
+            display: none;
+        }
+
+        label {
+            display: block;
+            cursor: pointer;
+        }
+        /*label span {
+            display: block;
+        }*/
+
+        img {
+            width: auto;
+            max-width: 100%;
+            height: auto;
+        }
+
+        input::-ms-clear {
+            display: none;
+        }
+    </style>
+    <style>
+        @font-face
+        {
+            font-family: 'Open Sans';
+            font-weight: 400;
+            font-style: normal;
+            src: url('fonts/OpenSans-Regular-webfont.eot');
+            src: url('fonts/OpenSans-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+            url('fonts/OpenSans-Regular-webfont.woff') format('woff'),
+            url('fonts/OpenSans-Regular-webfont.ttf') format('truetype');
+        }
+        @font-face
+        {
+            font-family: 'Open Sans Bold';
+            font-weight: 400;
+            font-style: normal;
+            src: url('fonts/OpenSans-Bold-webfont.eot');
+            src: url('fonts/OpenSans-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+            url('fonts/OpenSans-Bold-webfont.woff') format('woff'),
+            url('fonts/OpenSans-Bold-webfont.ttf') format('truetype');
+        }
+        @font-face
+        {
+            font-family: 'toyotadisplay_rg';
+            font-weight: normal;
+            font-style: normal;
+            src: url('fonts/ToyotaDisplay.eot');
+            src: url('fonts/ToyotaDisplay.eot?#iefix') format('embedded-opentype'),
+            url('fonts/ToyotaDisplay.woff2') format('woff2'),
+            url('fonts/ToyotaDisplay.woff') format('woff'),
+            url('fonts/ToyotaDisplay.ttf') format('truetype'),
+            url('fonts/ToyotaDisplay.svg#ToyotaDisplay') format('svg');
+        }
+        @font-face
+        {
+            font-family: 'toyotadisplay_bd';
+            font-weight: normal;
+            font-style: normal;
+            src: url('fonts/ToyotaDisplayBold.eot');
+            src: url('fonts/ToyotaDisplayBold.eot?#iefix') format('embedded-opentype'),
+            url('fonts/ToyotaDisplayBold.woff2') format('woff2'),
+            url('fonts/ToyotaDisplayBold.woff') format('woff'),
+            url('fonts/ToyotaDisplayBold.ttf') format('truetype'),
+            url('fonts/ToyotaDisplayBold.svg#ToyotaDisplay') format('svg');
+        }
+        @font-face
+        {
+            font-family: 'toyotatext_rg';
+            font-weight: normal;
+            font-style: normal;
+            src: url('fonts/ToyotaText.eot');
+            src: url('fonts/ToyotaText.eot?#iefix') format('embedded-opentype'),
+            url('fonts/ToyotaText.woff2') format('woff2'),
+            url('fonts/ToyotaText.woff') format('woff'),
+            url('fonts/ToyotaText.ttf') format('truetype'),
+            url('fonts/ToyotaText.svg#ToyotaText') format('svg');
+        }
+        @font-face
+        {
+            font-family: 'toyotatext_bd';
+            font-weight: normal;
+            font-style: normal;
+            src: url('fonts/ToyotaTextBold.eot');
+            src: url('fonts/ToyotaTextBold.eot?#iefix') format('embedded-opentype'),
+            url('fonts/ToyotaTextBold.woff2') format('woff2'),
+            url('fonts/ToyotaTextBold.woff') format('woff'),
+            url('fonts/ToyotaTextBold.ttf') format('truetype'),
+            url('fonts/ToyotaTextBold.svg#ToyotaText') format('svg');
+        }
+    </style>
+</head>
+<body>
+<script>
+    var injectParams = {
+      baseUrl: '/lc-land'
+    }
+</script>
+<section id="app">
+
+</section>
+<script src="//code.jquery.com/jquery-2.2.4.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5V0jwTZEozaLZld3JLqd9LGVSUkSrw1U"></script>
+<!--scripts-->
+<script src="/vendor.js"></script>
+<script src="/app.js"></script>
+<!--end-scripts-->
+
+</body>
+</html>

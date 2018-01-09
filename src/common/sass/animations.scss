@@ -1,0 +1,72 @@
+@keyframes fadeIn {
+    0% {opacity: 0}
+    100% {opacity: 1}
+}
+@keyframes fadeOut {
+    0% {opacity: 1}
+    100% {opacity: 0}
+}
+
+@keyframes bannerSlideOutPrev {
+    0% {left: 0}
+    100% {left: 100%}
+}
+@keyframes bannerSlideInPrev {
+    0% {left: -100%}
+    100% {left: 0}
+}
+
+@keyframes bannerSlideOutNext {
+    0% {left: 0}
+    100% {left: -100%}
+}
+@keyframes bannerSlideInNext {
+    0% {left: 100%}
+    100% {left: 0}
+}
+@keyframes textSlideOutTop {
+    0% {transform: translateY(0)}
+    100% {transform: translateY(20px)}
+}
+@keyframes textSlideInTop {
+    0% {transform: translateY(-20px)}
+    100% {transform: translateY(0)}
+}
+@keyframes textSlideInRight {
+    0% {transform: translateX(20px)}
+    100% {transform: translateX(0)}
+}
+@keyframes textSlideInBottom {
+    0% {transform: translateY(20px)}
+    100% {transform: translateX(0)}
+}
+
+@keyframes scaleIn {
+    0% {transform: scale(0)}
+    100% {transform: scale(1)}
+}
+@keyframes scaleOut {
+    0% {transform: scale(1)}
+    100% {transform: scale(0)}
+}
+@keyframes scaleInLight {
+    0% {transform: scale(0.95)}
+    100% {transform: scale(1)}
+}
+@keyframes scaleOutLight {
+    0% {transform: scale(1)}
+    100% {transform: scale(0.95)}
+}
+
+@keyframes slideInBottom {
+    0% {transform: translateY(100%)}
+    100% {transform: translateY(0)}
+}
+
+
+@keyframes bounce {
+    0%{ -webkit-transform:scale(0); opacity:0;}
+    50%{ -webkit-transform:scale(1.3); opacity:0.4;}
+    75%{ -webkit-transform:scale(0.9); opacity:0.7;}
+    100%{ -webkit-transform:scale(1); opacity:1;}
+}
