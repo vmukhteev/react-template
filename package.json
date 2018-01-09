@@ -1,8 +1,8 @@
 {
   "license": "UNLICENSED",
   "scripts": {
-    "build": "rimraf ./build/static && cross-env NODE_ENV=production webpack --config webpack.config.prod.babel.js && cross-env babel-node ./replace-static-assets.js",
-    "build-wrap": "rimraf ./build/static && cross-env NODE_ENV=production WRAP=true webpack --config webpack.config.prod.babel.js && cross-env babel-node ./replace-static-assets.js",
+    "build": "rimraf ./build/static && cross-env NODE_ENV=production webpack --config webpack.config.prod.babel.js",
+    "build-wrap": "rimraf ./build/static && cross-env NODE_ENV=production WRAP=true webpack --config webpack.config.prod.babel.js",
     "start": "babel-node ./server.js",
     "s": "npm run start",
     "b": "npm run build",

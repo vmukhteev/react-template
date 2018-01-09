@@ -24,9 +24,10 @@ export default {
     ],
   },
   output: {
-    path: path.join(__dirname, 'build', 'static', '[hash]'),
-    filename: '[name].js',
-    publicPath: '/static/[hash]/',
+    path: path.join(__dirname, 'build', 'static'),
+    filename: '[name].[chunkhash].js',
+    chunkFilename: '[chunkhash].js',
+    publicPath: '/static/',
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -44,14 +45,17 @@ export default {
       debug: false
     }),
     new CopyWebpackPlugin([
-      { from: `./src/${process.env.WRAP ? 'appWithWrap' : 'app'}.html`, to: '../../index.html' },
-      { from: './src/inject.js', to: '../../' },
-      { from: './src/theme/fonts', to: '../../fonts' }
+      { from: `./src/${process.env.WRAP ? 'appWithWrap' : 'app'}.html`, to: '../index.html' },
+      { from: './src/inject.js', to: '../' },
+      { from: './src/theme/fonts', to: '../fonts' }
     ]),
     new AssetsPlugin({ prettyPrint: true }),
-    new webpack.ExtendedAPIPlugin(),
+    new webpack.HashedModuleIdsPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
-      names: ['vendor'],
+      name: 'vendor',
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'manifest',
     }),
     new webpack.optimize.UglifyJsPlugin({}),
     new ExtractTextPlugin({
