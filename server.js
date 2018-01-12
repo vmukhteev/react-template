@@ -3,7 +3,7 @@
 import path from 'path';
 import express from 'express';
 import webpack from 'webpack';
-import config from './webpack.config.dev.js';
+import config from './webpack.config.dev.babel.js';
 import pages from './src/pages.js';
 
 pages.forEach( page => {
