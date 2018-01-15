@@ -1,5 +1,5 @@
-/* global NODE_ENV, __webpack_public_path__, injectParams, __webpack_hash__ */
+/* global injectParams */
 
 if(typeof injectParams !== 'undefined' && injectParams.origin) {
-  __webpack_public_path__= `${injectParams.origin}/static/${__webpack_hash__}/`;
+  __webpack_public_path__= `${injectParams.origin}/`;
 }

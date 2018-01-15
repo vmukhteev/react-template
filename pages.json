@@ -1,0 +1,8 @@
+[
+  {
+    "params": {
+      "template": "src/templates/default.html"
+    },
+    "port": 3000
+  }
+]

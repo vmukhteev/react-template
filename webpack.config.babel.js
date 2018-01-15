@@ -1,67 +1,110 @@
-/* global __dirname */
+/* global __dirname, process */
 
 import path from 'path';
 import webpack from 'webpack';
-import CopyWebpackPlugin from 'copy-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import ChunkManifestPlugin from 'chunk-manifest-webpack-plugin';
 import WebpackInjectPlugin from './src/common/webpack-inject-plugin';
 
+const NODE_ENV = process.env.NODE_ENV;
+
+export const templateParams = {
+  container: 'app',
+  title: 'Template',
+  filename: 'index.html',
+  template: 'src/templates/default.html'
+};
+
 export default {
-  entry: {
-    vendor: [
-      '@babel/polyfill',
-      'whatwg-fetch',
-      'react',
-      'react-dom',
-      'react-select',
-      './src/common/device.js',
-      './src/common/polyfill',
-      './src/common/basic',
-      './src/injectOptions.js',
-    ],
-    app: [
-      './src/index.jsx',
-    ],
-  },
-  output: {
-    path: path.join(__dirname, 'build'),
-    filename: '[name].[chunkhash:4].js',
-    chunkFilename: '[name].[chunkhash:4].js',
-    publicPath: '/',
-  },
+  entry:
+    NODE_ENV === 'production' ?
+    {
+      vendor: [
+        '@babel/polyfill',
+        'whatwg-fetch',
+        'react',
+        'react-dom',
+        'react-select',
+        './src/common/device.js',
+        './src/common/polyfill',
+        './src/common/basic',
+        './src/injectOptions.js',
+      ],
+      app: [
+        './src/index.jsx',
+      ],
+    } :
+    {
+      app: [
+        '@babel/polyfill',
+        './src/common/polyfill',
+        'react-hot-loader/patch',
+        'webpack-hot-middleware/client',
+        'whatwg-fetch',
+        './src/common/device.js',
+        './src/index.jsx',
+      ],
+    },
+  output: NODE_ENV === 'production' ?
+    {
+      path: path.join(__dirname, 'build'),
+      filename: '[name].[chunkhash:4].js',
+      chunkFilename: '[name].[chunkhash:4].js',
+      publicPath: '/',
+    } :
+    {
+      path: path.join(__dirname, 'build'),
+      filename: '[name].js',
+      publicPath: '/',
+    }
+  ,
   plugins: [
+
     new webpack.DefinePlugin({
-      NODE_ENV: '"production"',
-      'process.env.NODE_ENV': '"production"',
+      NODE_ENV: `"${NODE_ENV}"`,
+      'process.env.NODE_ENV': `"${NODE_ENV}"`,
     }),
+
     new webpack.ProvidePlugin({
       React: 'react',
       classNames: 'classnames',
       prop: 'safe-access',
       $: 'jquery',
     }),
-    new webpack.HashedModuleIdsPlugin(),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'manifest',
-    }),
-    new WebpackInjectPlugin(),
+
     new ExtractTextPlugin({
       filename: 'app.css',
       allChunks: true
     }),
-    new HtmlWebpackPlugin({
-      container: 'app',
-      title: 'Template111',
-      filename: 'index.html',
-      template: 'src/templates/default.html'
+
+    NODE_ENV === 'development' &&
+    new webpack.HotModuleReplacementPlugin(),
+
+    NODE_ENV === 'development' &&
+    new webpack.NoEmitOnErrorsPlugin(),
+
+    NODE_ENV === 'production' && new HtmlWebpackPlugin(templateParams),
+
+    NODE_ENV === 'production' &&
+    new webpack.HashedModuleIdsPlugin(),
+
+    NODE_ENV === 'production' &&
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
     }),
+
+    NODE_ENV === 'production' &&
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'manifest',
+    }),
+
+    NODE_ENV === 'production' &&
+    new WebpackInjectPlugin(),
+
+    NODE_ENV === 'production' &&
     new webpack.optimize.UglifyJsPlugin({}),
-  ],
+
+  ].filter(item => item),
   resolve: {
     extensions: ['.js', '.jsx', '.scss'],
     modules: [
@@ -113,7 +156,9 @@ export default {
             loader: 'css-loader',
             options: {
               importLoaders: 1,
-              localIdentName: '[hash:base64:6]__[local]',
+              localIdentName:
+                NODE_ENV === 'production' ? '[hash:base64:6]__[local]' : '___[local]'
+              ,
               modules: true,
             }
           },
@@ -136,6 +181,7 @@ export default {
               }],
               "@babel/preset-stage-0"
             ],
+            plugins: NODE_ENV === 'production' ? [] : ["react-hot-loader/babel"],
             babelrc: false
           }
         },

@@ -7,9 +7,9 @@ export const API = getAPI(null, {
   prod: 'https://serviceportal.toyota.ru',
 });
 
-export const ORIGIN = typeof injectParams !== 'undefined' && injectParams.origin ? injectParams.origin : '//pages.toyota.ru/lc-land';
-export const DEALER = typeof injectParams !== 'undefined' && injectParams.dealer;
-export const BASE_URL = typeof injectParams !== 'undefined' && injectParams.baseUrl ? injectParams.baseUrl : '/';
-export const CONTAINER = (typeof injectParams !== 'undefined' && injectParams.container) || '#app';
 
+const injectParams = typeof injectParams !== 'undefined' ? injectParams : {};
+
+export const BASE_URL = injectParams.baseUrl ? injectParams.baseUrl : '/';
+export const CONTAINER = injectParams.container || '#app';
 export const CSS = require('!!sass-variable-loader!./theme/partials/variables.scss');
