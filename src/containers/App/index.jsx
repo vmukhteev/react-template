@@ -8,6 +8,7 @@ import qs from 'qs';
 class App extends React.Component {
 
 	componentWillMount() {
+		//Стираем неактуальные записи в storage при обновлении билда
     if(!localStorage.getItem("build") || localStorage.getItem("build") !== __webpack_hash__) {
       //localStorage.removeItem('item');
       localStorage.setItem("build", __webpack_hash__);
@@ -21,7 +22,6 @@ class App extends React.Component {
 
 		return (
 			<div>
-
 			</div>
 		);
 	}

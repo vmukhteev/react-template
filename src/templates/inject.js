@@ -5,8 +5,8 @@
   origin = origin.replace(/\/$/, '');
 
   var scripts = [
-    origin + '<<<vendor>>>',
-    origin + '<<<app>>>'
+    origin + '<%= htmlWebpackPlugin.options.container %>',
+    origin + '<%= htmlWebpackPlugin.options.container %>'
   ];
 
   loadScripts(scripts);

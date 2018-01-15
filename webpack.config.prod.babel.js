@@ -3,8 +3,10 @@
 import path from 'path';
 import webpack from 'webpack';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
-import AssetsPlugin from 'assets-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import ChunkManifestPlugin from 'chunk-manifest-webpack-plugin';
+import WebpackInjectPlugin from './src/common/webpack-inject-plugin';
 
 export default {
   entry: {
@@ -24,10 +26,10 @@ export default {
     ],
   },
   output: {
-    path: path.join(__dirname, 'build', 'static'),
-    filename: '[name].[chunkhash].js',
-    chunkFilename: '[chunkhash].js',
-    publicPath: '/static/',
+    path: path.join(__dirname, 'build'),
+    filename: '[name].[chunkhash:4].js',
+    chunkFilename: '[name].[chunkhash:4].js',
+    publicPath: '/',
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -40,16 +42,6 @@ export default {
       prop: 'safe-access',
       $: 'jquery',
     }),
-    new webpack.LoaderOptionsPlugin({
-      minimize: true,
-      debug: false
-    }),
-    new CopyWebpackPlugin([
-      { from: `./src/${process.env.WRAP ? 'appWithWrap' : 'app'}.html`, to: '../index.html' },
-      { from: './src/inject.js', to: '../' },
-      { from: './src/theme/fonts', to: '../fonts' }
-    ]),
-    new AssetsPlugin({ prettyPrint: true }),
     new webpack.HashedModuleIdsPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
@@ -57,11 +49,18 @@ export default {
     new webpack.optimize.CommonsChunkPlugin({
       name: 'manifest',
     }),
-    new webpack.optimize.UglifyJsPlugin({}),
+    new WebpackInjectPlugin(),
     new ExtractTextPlugin({
       filename: 'app.css',
       allChunks: true
-    })
+    }),
+    new HtmlWebpackPlugin({
+      container: 'app',
+      title: 'Template111',
+      filename: 'index.html',
+      template: 'src/templates/default.html'
+    }),
+    new webpack.optimize.UglifyJsPlugin({}),
   ],
   resolve: {
     extensions: ['.js', '.jsx', '.scss'],
