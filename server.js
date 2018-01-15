@@ -22,4 +22,4 @@ pages.forEach( page => {
   });
 
   app.listen(page.port, 'localhost');
-})
+});
